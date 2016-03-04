@@ -29,18 +29,12 @@ maxProduct row col = maximum [(maxRowProduct row col), (maxColumnProduct row col
 
 -- The maximum product left or right from (row, col)
 maxRowProduct :: Int -> Int -> Int
-maxRowProduct row col = rightProduct row col
-
-rightProduct :: Int -> Int -> Int
-rightProduct row col 
+maxRowProduct row col 
 	| col < 17  = product [numbers!!row!!(col+i) | i <- [0..3]]
 	| otherwise = 0
 
 maxColumnProduct :: Int -> Int -> Int
-maxColumnProduct row col = downProduct row col
-
-downProduct :: Int -> Int -> Int
-downProduct row col 
+maxColumnProduct row col 
 	| row < 17  = product [numbers!!(row+i)!!col | i <- [0..3]] 
 	| otherwise = 0
 
