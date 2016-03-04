@@ -29,43 +29,23 @@ maxProduct row col = maximum [(maxRowProduct row col), (maxColumnProduct row col
 
 -- The maximum product left or right from (row, col)
 maxRowProduct :: Int -> Int -> Int
-maxRowProduct row col = maximum [(leftProduct row col), (rightProduct row col)]
-
-leftProduct :: Int -> Int -> Int
-leftProduct row col 
-	| col > 2   = product [numbers!!row!!(col-i) | i <- [0..3]] -- * (numbers!!row!!(col-2)) * (numbers!!row!!(col-1)) * (numbers!!row!!col)
-	| otherwise = 0
+maxRowProduct row col = rightProduct row col
 
 rightProduct :: Int -> Int -> Int
 rightProduct row col 
-	| col < 17  = product [numbers!!row!!(col+i) | i <- [0..3]] -- * (numbers!!row!!(col+2)) * (numbers!!row!!(col+1)) * (numbers!!row!!col)
+	| col < 17  = product [numbers!!row!!(col+i) | i <- [0..3]]
 	| otherwise = 0
 
 maxColumnProduct :: Int -> Int -> Int
-maxColumnProduct row col = maximum [(upProduct row col), (downProduct row col)]
-
-upProduct :: Int -> Int -> Int
-upProduct row col 
-	| row > 2   = product [numbers!!(row-i)!!col | i <- [0..3]] -- * (numbers!!(row-3)!!col) * (numbers!!(row-2)!!col) * (numbers!!(row-1)!!col) * (numbers!!row!!col)
-	| otherwise = 0
+maxColumnProduct row col = downProduct row col
 
 downProduct :: Int -> Int -> Int
 downProduct row col 
-	| row < 17  = product [numbers!!(row+i)!!col | i <- [0..3]] -- * (numbers!!(row+2)!!col) * (numbers!!(row+1)!!col) * (numbers!!row!!col)
+	| row < 17  = product [numbers!!(row+i)!!col | i <- [0..3]] 
 	| otherwise = 0
 
 maxDiagProduct :: Int -> Int -> Int
-maxDiagProduct row col = maximum [(uRDiagProduct row col), (uLDiagProduct row col), (dLDiagProduct row col), (dRDiagProduct row col)]
-
-uRDiagProduct :: Int -> Int -> Int
-uRDiagProduct row col
-	| row > 2 && col < 17 = product [numbers!!(row-i)!!(col+i) | i <- [0..3]]
-	| otherwise = 0
-
-uLDiagProduct :: Int -> Int -> Int
-uLDiagProduct row col
-	| row > 2 && col > 2 = product [numbers!!(row-i)!!(col-i) | i <- [0..3]]
-	| otherwise = 0
+maxDiagProduct row col = maximum [(dLDiagProduct row col), (dRDiagProduct row col)]
 
 dRDiagProduct :: Int -> Int -> Int
 dRDiagProduct row col
