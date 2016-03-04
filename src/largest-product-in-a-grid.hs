@@ -23,11 +23,9 @@ numbers = [
 
 matrixMax = maximum [maxProduct i j | i <- [0..19], j <- [0..19]]
 
--- The maximum product in all directions at index (row, col)
 maxProduct :: Int -> Int -> Int
 maxProduct row col = maximum [(maxRowProduct row col), (maxColumnProduct row col), (maxDiagProduct row col)]
 
--- The maximum product left or right from (row, col)
 maxRowProduct :: Int -> Int -> Int
 maxRowProduct row col 
 	| col < 17  = product [numbers!!row!!(col+i) | i <- [0..3]]
