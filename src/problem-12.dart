@@ -15,7 +15,7 @@ int divCount(int divisor, int number) {
 
 int numDivisors(int number) {
     int divisors = 1;
-    var prime = [2, 3, 5, 7, 11, 13, 17, 19, 23].iterator..moveNext();
+    var prime = [2, 3, 5, 7, 11, 13, 17].iterator..moveNext();
     while (prime.current != null) {
       int exponent = divCount(prime.current, number);
       divisors *= (exponent + 1);
@@ -28,7 +28,7 @@ int numDivisors(int number) {
 void main() {
   int divisors = 0;
   int number;
-  for (int n=1; divisors <= 500 && n < 100000; n++) {
+  for (int n=1; divisors <= 500; n++) {
     number = nthTriangleNumber(n);
     divisors = numDivisors(number);
   }
